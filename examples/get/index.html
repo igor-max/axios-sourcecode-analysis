@@ -12,40 +12,41 @@
 
   <script src="/dist/axios.min.js"></script>
   <script>
-    // axios.interceptors.request.use(function (config) {
-    //   config.headers['a'] = 'just test';
-    //   return config;
-    // });
+    axios.interceptors.request.use(function (config) {
+      config.headers['a'] = 'just test';
+      throw 'lala';
+      return config;
+    });
 
 
     // const CancelToken = axios.CancelToken;
     // const source = CancelToken.source();
 
-    // axios.get('/get/server', {
-    //   cancelToken: source.token   // cancelToken is CancelToken instance
-    // }).then(res => console.log(res)).catch(function (thrown) {
-    //   if (axios.isCancel(thrown)) {
-    //     console.log(thrown);
-    //   } else {
-    //     // handle error
-    //     console.log(thrown)
-    //   }
-    // });
+    axios.get('/get/server', {
+    }).then(res => console.log('result',res)).catch(function (thrown) {
+      if (axios.isCancel(thrown)) {
+        console.log(thrown);
+      } else {
+        // handle error
+        console.log('error', thrown)
+      }
+    });
 
     // debugger;
     // source.cancel('手动取消请求');
 
-    Promise.all([Promise.resolve(1), Promise.resolve(2)]).then(res => console.log(res));
 
-    axios.all([Promise.resolve(1), Promise.resolve(2)]).then(axios.spread((a) => {
-      console.log(a)
-    }))
+    // Promise.all([Promise.resolve(1), Promise.resolve(2)]).then(res => console.log(res));
 
-    function lala(cb) {
-      return function(res) {
-       return cb.apply(null, res)
-      }
-    }
+    // axios.all([Promise.resolve(1), Promise.resolve(2)]).then(axios.spread((a) => {
+    //   console.log(a)
+    // }))
+
+    // function lala(cb) {
+    //   return function(res) {
+    //    return cb.apply(null, res)
+    //   }
+    // }
       // axios
       //   .get('/get/server')
       //   .then(function (response) {
