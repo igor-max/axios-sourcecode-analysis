@@ -26,6 +26,7 @@ var people = [
 ];
 
 module.exports = function (req, res) {
+  console.log(1111);
   res.writeHead(200, {
     'Content-Type': 'text/json'
   });
